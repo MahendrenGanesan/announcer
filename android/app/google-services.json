@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "328194337114",
+    "firebase_url": "https://announcer-ea3a4.firebaseio.com",
+    "project_id": "announcer-ea3a4",
+    "storage_bucket": "announcer-ea3a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328194337114:android:3fddf42aa0d52d45f16b63",
+        "android_client_info": {
+          "package_name": "service360.announcer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328194337114-lape9m9tj66nf7ln41g6r5u951u3gnnr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "service360.announcer",
+            "certificate_hash": "e96cb3a39d687821406a8d79e08181a1842a6efe"
+          }
+        },
+        {
+          "client_id": "328194337114-6go0keo7fah38tndbn8l49hf0s4hgan1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "service360.announcer",
+            "certificate_hash": "0808de02e8a7b8b468cdb7ed0aa19edbd56b4fc9"
+          }
+        },
+        {
+          "client_id": "328194337114-uuapmsgfrv5vj1738j5eg4gett7tvnfl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlJNbBJGG2OaYk5QggEz4-IwcreklAUOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328194337114-uuapmsgfrv5vj1738j5eg4gett7tvnfl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

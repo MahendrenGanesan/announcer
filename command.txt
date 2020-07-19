@@ -1,0 +1,99 @@
+cd $BASE_DIR
+mkdir android-sdk
+cd android-sdk
+wget https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip
+unzip commandlinetools-linux-6200805_latest.zip
+./tools/bin/sdkmanager --sdk_root=$(pwd) "build-tools;28.0.3" "emulator" "platform-tools" "platforms;android-28" "tools"
+
+cd $BASE_DIR
+wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.12.13+hotfix.8-stable.tar.xz
+tar xvf flutter_linux_v1.12.13+hotfix.8-stable.tar.xz
+
+
+
+export ANDROID_SDK=$HOME/android-sdk
+export ANDROID_PATH=$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools/bin
+export FLUTTER=$HOME/flutter/bin
+export PATH=$PATH:$ANDROID_PATH:$FLUTTER
+
+
+export _JAVA_OPTIONS=-Djava.io.tmpdir=/tmp
+sudo mount -o remount,size=8G,noatime /tmp;
+
+-- for sdkmanager to download the emulator
+sdkmanager  "system-images;android-29;google_apis;x86_64"
+avdmanager create avd --package "system-images;android-29;google_apis;x86_64" --name "android-29" -c 100M -d 7 -f
+sdkmanager  "system-images;android-28;google_apis;x86_64"
+avdmanager create avd --package "system-images;android-28;google_apis;x86_64" --name "android-28" -c 100M -d 7 -f
+
+flutter config --android-sdk  $HOME/android-sdk
+
+keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+        Picked up _JAVA_OPTIONS: -Djava.io.tmpdir=/tmp
+        Alias name: androiddebugkey
+        Creation date: 16-May-2020
+        Entry type: PrivateKeyEntry
+        Certificate chain length: 1
+        Certificate[1]:
+        Owner: C=US, O=Android, CN=Android Debug
+        Issuer: C=US, O=Android, CN=Android Debug
+        Serial number: 1
+        Valid from: Sat May 16 11:55:15 IST 2020 until: Mon May 09 11:55:15 IST 2050
+        Certificate fingerprints:
+                MD5:  6D:A8:51:FC:B6:68:92:91:FF:64:C6:39:6F:32:D1:BE
+                SHA1: file:///home/mahendren/Downloads/google-services.json
+                SHA256: BA:D6:EC:2C:F3:EE:83:EA:F0:8A:F3:B1:1D:FC:A7:55:1A:5E:29:50:22:1E:FC:B5:65:69:EB:3C:09:67:5D:D8
+        Signature algorithm name: SHA1withRSA
+        Subject Public Key Algorithm: 2048-bit RSA key
+        Version: 1
+
+
+keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+Alias name: androiddebugkey
+Creation date: 16-May-2020
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: C=US, O=Android, CN=Android Debug
+Issuer: C=US, O=Android, CN=Android Debug
+Serial number: 1
+Valid from: Sat May 16 11:55:15 IST 2020 until: Mon May 09 11:55:15 IST 2050
+Certificate fingerprints:
+         MD5:  6D:A8:51:FC:B6:68:92:91:FF:64:C6:39:6F:32:D1:BE
+         SHA1: 08:08:DE:02:E8:A7:B8:B4:68:CD:B7:ED:0A:A1:9E:DB:D5:6B:4F:C9
+         SHA256: BA:D6:EC:2C:F3:EE:83:EA:F0:8A:F3:B1:1D:FC:A7:55:1A:5E:29:50:22:1E:FC:B5:65:69:EB:3C:09:67:5D:D8
+Signature algorithm name: SHA1withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 1
+
+Warning:
+The JKS keystore uses a proprietary format. It is recommended to migrate to PKCS12 which is an industry standard format using "keytool -importkeystore -srckeystore /home/mahendren/.android/debug.keystore -destkeystore /home/mahendren/.android/debug.keystore -deststoretype pkcs12".
+
+
+./gradlew signingReport
+flutter pub get
+
+
+-------------------------------------- deepin -------------------------------------
+add path to mahendren/android-studio/jre/bin/keytool
+keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+
+lias name: androiddebugkey
+Creation date: Jul 11, 2020
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: C=US, O=Android, CN=Android Debug
+Issuer: C=US, O=Android, CN=Android Debug
+Serial number: 1
+Valid from: Sat Jul 11 20:08:12 IST 2020 until: Mon Jul 04 20:08:12 IST 2050
+Certificate fingerprints:
+         MD5:  CC:4E:29:CF:2E:DF:09:DE:D6:D7:86:C5:B3:7E:C7:68
+         SHA1: E9:6C:B3:A3:9D:68:78:21:40:6A:8D:79:E0:81:81:A1:84:2A:6E:FE
+         SHA256: 92:31:86:6F:4B:68:8C:36:60:05:D2:52:8B:95:85:CD:43:7C:F9:8A:01:4E:82:FE:DB:23:03:5B:F1:3E:EE:49
+Signature algorithm name: SHA1withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 1
+
+Warning:
+The JKS keystore uses a proprietary format. It is recommended to migrate to PKCS12 which is an industry standard format using "keytool -importkeystore -srckeystore /home/mahendren/.android/debug.keystore -destkeystore /home/mahendren/.android/debug.keystore -deststoretype pkcs12".
